@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Course;
 use app\models\CourseEnrollment;
+use app\models\Student;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -87,8 +89,13 @@ class CourseEnrollmentController extends Controller
             $model->loadDefaultValues();
         }
 
+        $courses = Course::find()->all();
+        $students = Student::find()->all();
+
         return $this->render('create', [
             'model' => $model,
+            'courses' => $courses,
+            'students' => $students
         ]);
     }
 
@@ -107,8 +114,13 @@ class CourseEnrollmentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $courses = Course::find()->all();
+        $students = Student::find()->all();
+
         return $this->render('update', [
             'model' => $model,
+            'courses' => $courses,
+            'students' => $students
         ]);
     }
 

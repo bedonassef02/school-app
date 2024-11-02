@@ -14,7 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'mentor_teacher_id')->textInput() ?>
+    <?= $form->field($model, 'mentor_teacher_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map($teachers, 'id', 'name'),
+        ['prompt' => 'Select Teacher']
+    ) ?>
 
     <?= $form->field($model, 'enrolled_at')->textInput() ?>
 

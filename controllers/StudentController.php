@@ -87,8 +87,11 @@ class StudentController extends Controller
             $model->loadDefaultValues();
         }
 
+        $teachers = \app\models\Teacher::find()->all();
+
         return $this->render('create', [
             'model' => $model,
+            'teachers' => $teachers
         ]);
     }
 
@@ -107,8 +110,11 @@ class StudentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $teachers = \app\models\Teacher::find()->all();
+
         return $this->render('update', [
             'model' => $model,
+            'teachers' => $teachers
         ]);
     }
 

@@ -12,9 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'course_id')->textInput() ?>
+    <?= $form->field($model, 'course_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map($courses, 'id', 'id'),
+        ['prompt' => 'Select a course']
+    ) ?>
 
-    <?= $form->field($model, 'student_id')->textInput() ?>
+    <?= $form->field($model, 'student_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map($students, 'id', 'name'),
+        ['prompt' => 'Select a student']
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

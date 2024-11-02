@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Course;
+use app\models\CourseTopic;
+use app\models\Teacher;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -87,8 +89,13 @@ class CourseController extends Controller
             $model->loadDefaultValues();
         }
 
+        $course_topics = CourseTopic::find()->all();
+        $teachers = Teacher::find()->all();
+
         return $this->render('create', [
             'model' => $model,
+            'teachers' => $teachers,
+            'course_topics' => $course_topics
         ]);
     }
 
