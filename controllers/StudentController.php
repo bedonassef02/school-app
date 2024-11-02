@@ -87,7 +87,7 @@ class StudentController extends Controller
             $model->loadDefaultValues();
         }
 
-        $teachers = \app\models\Teacher::find()->all();
+        $teachers = $this->getTeachers();
 
         return $this->render('create', [
             'model' => $model,
@@ -110,7 +110,7 @@ class StudentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $teachers = \app\models\Teacher::find()->all();
+        $teachers = $this->getTeachers();
 
         return $this->render('update', [
             'model' => $model,
@@ -146,5 +146,10 @@ class StudentController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function getTeachers()
+    {
+        return \app\models\Teacher::find()->all();
     }
 }

@@ -89,8 +89,8 @@ class CourseController extends Controller
             $model->loadDefaultValues();
         }
 
-        $course_topics = CourseTopic::find()->all();
-        $teachers = Teacher::find()->all();
+        $course_topics = $this->getCourseTopics();
+        $teachers = $this->getTeachers();
 
         return $this->render('create', [
             'model' => $model,
@@ -114,8 +114,13 @@ class CourseController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $course_topics = $this->getCourseTopics();
+        $teachers = $this->getTeachers();
+
         return $this->render('update', [
             'model' => $model,
+            'teachers' => $teachers,
+            'course_topics' => $course_topics
         ]);
     }
 
@@ -147,5 +152,15 @@ class CourseController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function getTeachers()
+    {
+        return \app\models\Teacher::find()->all();
+    }
+
+    private function getCourseTopics()
+    {
+        return \app\models\CourseTopic::find()->all();
     }
 }

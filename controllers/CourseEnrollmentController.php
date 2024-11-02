@@ -89,8 +89,8 @@ class CourseEnrollmentController extends Controller
             $model->loadDefaultValues();
         }
 
-        $courses = Course::find()->all();
-        $students = Student::find()->all();
+        $courses = $this->getCourses();
+        $students = $this->getStudents();
 
         return $this->render('create', [
             'model' => $model,
@@ -114,8 +114,8 @@ class CourseEnrollmentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $courses = Course::find()->all();
-        $students = Student::find()->all();
+        $courses = $this->getCourses();
+        $students = $this->getStudents();
 
         return $this->render('update', [
             'model' => $model,
@@ -152,5 +152,15 @@ class CourseEnrollmentController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function getStudents()
+    {
+        return \app\models\Student::find()->all();
+    }
+
+    private function getCourses()
+    {
+        return \app\models\Course::find()->all();
     }
 }
