@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
         ['prompt' => 'Select Teacher']
     ) ?>
 
-    <?= $form->field($model, 'enrolled_at')->textInput() ?>
+    <?= $form->field($model, 'enrolled_at')->input('date') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

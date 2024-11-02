@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'teachers' => $teachers,
+        'course_topics' => $course_topics
     ]) ?>
 
 </div>
